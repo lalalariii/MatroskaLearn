@@ -1,0 +1,109 @@
+{
+  "configVersion": 1,
+  "timestamp": 1750008306727,
+  "index": "/MatroskaLearn/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/MatroskaLearn/favicon.ico",
+        "/MatroskaLearn/ffmpeg-core/const.js",
+        "/MatroskaLearn/ffmpeg-core/errors.js",
+        "/MatroskaLearn/ffmpeg-core/ffmpeg-core.js",
+        "/MatroskaLearn/ffmpeg-core/ffmpeg-core.wasm",
+        "/MatroskaLearn/ffmpeg-core/worker.js",
+        "/MatroskaLearn/index.html",
+        "/MatroskaLearn/main-GN37QXIZ.js",
+        "/MatroskaLearn/manifest.webmanifest",
+        "/MatroskaLearn/polyfills-FFHMD2TL.js",
+        "/MatroskaLearn/scripts-HGJP3WCT.js",
+        "/MatroskaLearn/styles-K36X36AN.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/MatroskaLearn/icons/300.jpg",
+        "/MatroskaLearn/icons/caret-up-fill.svg",
+        "/MatroskaLearn/icons/hand-index.svg",
+        "/MatroskaLearn/icons/icon-128x128.png",
+        "/MatroskaLearn/icons/icon-144x144.png",
+        "/MatroskaLearn/icons/icon-152x152.png",
+        "/MatroskaLearn/icons/icon-192x192.png",
+        "/MatroskaLearn/icons/icon-384x384.png",
+        "/MatroskaLearn/icons/icon-512x512.png",
+        "/MatroskaLearn/icons/icon-72x72.png",
+        "/MatroskaLearn/icons/icon-96x96.png",
+        "/MatroskaLearn/icons/icon_priv.png",
+        "/MatroskaLearn/icons/icono_ejemplo.png",
+        "/MatroskaLearn/icons/icono_provisional.webp",
+        "/MatroskaLearn/icons/pause-fill.svg",
+        "/MatroskaLearn/icons/play-fill.svg",
+        "/MatroskaLearn/icons/plus.svg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/MatroskaLearn/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
+    "/MatroskaLearn/ffmpeg-core/const.js": "4c7c17da355350136f3109e2b4cbf42a0de5513b",
+    "/MatroskaLearn/ffmpeg-core/errors.js": "cdaec1355726b614dfbe599e26cc0ab35bed0275",
+    "/MatroskaLearn/ffmpeg-core/ffmpeg-core.js": "504de01074764a9a7c0e9797f6d518d86c3bde54",
+    "/MatroskaLearn/ffmpeg-core/ffmpeg-core.wasm": "21dc9205b471d8f6684fa71bc87d4b05c192eefd",
+    "/MatroskaLearn/ffmpeg-core/worker.js": "b9d82e2cfbf332a8f07869fff51bde022b73b80b",
+    "/MatroskaLearn/icons/300.jpg": "0447f8242c353575e2da32ed4e6a19a5b91a2d61",
+    "/MatroskaLearn/icons/caret-up-fill.svg": "6c104f44469ee84da11dfa6490bff81b1e22f1e2",
+    "/MatroskaLearn/icons/hand-index.svg": "4f8b236d5ce314e0dbba67474f23345c6a2913be",
+    "/MatroskaLearn/icons/icon-128x128.png": "f912963bdc6d5a38d8f1dd0afbaab2ce8d657acb",
+    "/MatroskaLearn/icons/icon-144x144.png": "b155fd5f2fd5d2ea7760721063003c4cd95fd783",
+    "/MatroskaLearn/icons/icon-152x152.png": "eae6e0f0c8afb8aaae339e2a569b43e9238e5e6c",
+    "/MatroskaLearn/icons/icon-192x192.png": "15c4180454633880d98674aa7394656196c91584",
+    "/MatroskaLearn/icons/icon-384x384.png": "94a915751ef6c9282df9aea405ad679230631814",
+    "/MatroskaLearn/icons/icon-512x512.png": "1de182f76f7329dfa8f9fcdd1fdcdd695bea6a99",
+    "/MatroskaLearn/icons/icon-72x72.png": "aa88a6096bd973be7f6d7a5489bfa6bc2463f8c4",
+    "/MatroskaLearn/icons/icon-96x96.png": "7fb8f59c30ce2ff12c700321a0b39e14b3dc8f95",
+    "/MatroskaLearn/icons/icon_priv.png": "81462eb2d544a18340a2040daa1a0d97a33b5a64",
+    "/MatroskaLearn/icons/icono_ejemplo.png": "9bbb57027e78dc5ec4b9ab3e9e61dc73d52d49c3",
+    "/MatroskaLearn/icons/icono_provisional.webp": "ac4036777cb19a584e314cc1859bce6571a8436f",
+    "/MatroskaLearn/icons/pause-fill.svg": "90a06d7187d480de0309623bd3350295550dafbc",
+    "/MatroskaLearn/icons/play-fill.svg": "102f8b3b00bf99e34a1e03d47811610cb9f56662",
+    "/MatroskaLearn/icons/plus.svg": "892965ac4f243fdbb236b017133b7a287d86f7b4",
+    "/MatroskaLearn/index.html": "e04bc4324ea548c4f7faad4aefb42a72c1564005",
+    "/MatroskaLearn/main-GN37QXIZ.js": "3281401f1038ce9516a44fcf895881c3457bf7c5",
+    "/MatroskaLearn/manifest.webmanifest": "84b2363aa798de6126af1000aeab5418e56cc218",
+    "/MatroskaLearn/polyfills-FFHMD2TL.js": "f49b49a155bc7d192db62a4c15d0a612b460a667",
+    "/MatroskaLearn/scripts-HGJP3WCT.js": "07bb964c859c3e2003eefacea3b0c324560ce31a",
+    "/MatroskaLearn/styles-K36X36AN.css": "43355ae5497d2a47fcc6b29e5f6a93298bb41e34"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
