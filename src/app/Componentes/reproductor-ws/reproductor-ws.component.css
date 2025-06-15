@@ -1,0 +1,14 @@
+
+/*Personalizacion slider*/
+
+input[type="range"]::-webkit-slider-thumb {
+    background-color: #119DA4; /* Cambia esto al color que quieras */
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+    background-color: #119DA4; /* Cambia esto al color que quieras */
+  }
+  
+  input[type="range"]::-ms-thumb {
+    background-color: #119DA4; /* Cambia esto al color que quieras */
+  }

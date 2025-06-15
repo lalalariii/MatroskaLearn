@@ -1,0 +1,27 @@
+<!--POP-UP PARA INTRODUCIR ARCHIVO MKV-->
+<div class="modal fade" #popupIntroducirArchivoMkv tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header container-fluid">
+            <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Selecciona un archivo mkv</h1>
+            
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container-fluid g-0">
+            <div class="row mx-0 mb-3">
+                <input type="file" accept="video/x-matroska" class="form-control-file" (change)="introducirMkv($event)"
+                >
+            </div>
+  
+            <div class="row mx-0 justify-content-end">
+                <div class="col-auto">
+                <button class="btn color-amarillo-2 texto-azul-j fw-bold" data-bs-dismiss="modal" (click)="aceptar()">Confirmar</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+  </div>
+  <!--FIN POP-UP PARA INTRODUCIR ARCHIVO MKV-->

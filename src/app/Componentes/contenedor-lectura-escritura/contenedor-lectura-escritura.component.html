@@ -1,0 +1,135 @@
+
+  <!--POP UPS COMPONENTE-->
+  <app-pop-up-introducir-mkv (ficheroIntroducido)="introducirMkv($event)"></app-pop-up-introducir-mkv>
+  <app-pop-up-introducir-mp3 (ficheroIntroducido)="introducirNuevoAudio($event)"></app-pop-up-introducir-mp3>
+  <app-pop-up-carga></app-pop-up-carga>
+  <app-pop-up-error></app-pop-up-error>
+  <app-pop-up-agregar-marca></app-pop-up-agregar-marca>
+  <app-pop-up-agregar-secc-marc></app-pop-up-agregar-secc-marc>
+  <!--FIN POP UPS COMPONENTE-->
+  
+  <div class="col-12 h-100 mh-100 d-flex flex-column">
+  
+      <!--BARRA DE ARCHIVO Y DESCARGA-->
+      <div class="row d-flex mx-0 p-2 color-marron-1 align-items-center mb-3">
+    
+          <div class="col-auto ps-0 pe-2">
+            <button class="btn dropdown letra-gris-oscuro">
+              <div class="row mx-0 dropdown-toggle fw-bold align-items-center" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="col-auto ps-0 pe-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-text-fill" viewBox="0 0 16 16">
+                    <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M4.5 9a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1zM4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 1 0-1h4a.5.5 0 0 1 0 1z"/>
+                  </svg>
+                </div>
+                <div class="col px-0 fw-bold">
+                  Archivo
+                </div>
+              </div>
+              
+              <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink" *ngIf="modoInterfaz == ModoVisionArchivo.LECTURA">
+                <li><a class="dropdown-item" (click)="abrirPopUpMkv()">Cargar</a></li>
+              </ul>
+  
+              <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink" *ngIf="modoInterfaz == ModoVisionArchivo.ESCRITURA">
+                <li><a class="dropdown-item" (click)="abrirPopUpMp3()">Nuevo</a></li>
+                <li><a class="dropdown-item" (click)="abrirPopUpMkv()">Cargar</a></li>
+              </ul>
+            </button>
+              
+          </div>
+      
+          <div class="col px-0" *ngIf="wsCargado">
+            <div class="row mx-0 justify-content-end">
+              <div class="col-auto col-lg-2 px-0">
+                <button class="btn color-salmon letra-beis-1 w-100" (click)="descargarMKV()">
+                  <div class="row mx-0 align-items-center justify-content-center">
+                    <div class="col-auto px-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-arrow-down-fill" viewBox="0 0 16 16">
+                        <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1m-1 4v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 11.293V7.5a.5.5 0 0 1 1 0"/>
+                      </svg>
+                    </div>
+                    <div class="col-auto ps-2 pe-0 fw-bold d-none d-md-inline">
+                      Descargar
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+      </div>
+      <!-- FIN BARRA DE ARCHIVO Y DESCARGA-->
+  
+      <div class="row mx-0 px-3 pb-3 g-0 flex-grow-1" [style.visibility]="wsCargado ? 'visible' : 'hidden'">
+        <div class="col width-0 h-100 mh-100 d-flex flex-column">
+  
+          <!--NOMBRE ARCHIVO-->
+          <div class="row mb-1 mx-0 px-3 justify-content-center align-items-center" *ngIf="!editarNombreArchivo && modoInterfaz === ModoVisionArchivo.ESCRITURA">
+            <div class="col-auto mw-80 px-0 fw-bold fs-5 text-truncate">
+                {{nombreArchivo}}
+            </div>
+          
+            <div class="col-auto px-0">
+              <button type="button" class="btn btn-sm" (click)="editarNombreArchivo = true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+    
+          <div class="row mx-0 justify-content-center align-items-center mb-1" *ngIf="editarNombreArchivo  && modoInterfaz === ModoVisionArchivo.ESCRITURA">
+            <div class="col-6 px-0">
+              <input class="form-control" type="text" [(ngModel)]="nombreArchivo">
+            </div>
+          
+            <div class="col-auto px-0">
+              <button type="button" class="btn color-salmon letra-beis-1" (click)="editarNombreArchivo = false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                  <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <!--FIN NOMBRE ARCHIVO-->
+
+          <app-reproductor-ws></app-reproductor-ws>
+          
+          
+          <app-lista-secciones-marcas-abreviada [modoInterfaz]="modoInterfaz"
+          class="overflow-hidden rounded pb-3 px-0 ocultar-en-horizontal">
+        
+        </app-lista-secciones-marcas-abreviada>
+  
+          
+        
+    
+          <app-panel-edicion-vision-secc-marca [modoInterfaz]="modoInterfaz"
+          class="col-12 overflow-hidden flex-grow-1 d-flex flex-column rounded"></app-panel-edicion-vision-secc-marca>
+        
+          
+      
+        </div>
+  
+        <div class="ocultar-en-vertical col-auto width-max-content min-width-25 ps-3 h-100 mh-100 d-flex flex-column">
+          <!--NIVELADOR -->
+          <div class="row mb-1 invisible" *ngIf="modoInterfaz === ModoVisionArchivo.ESCRITURA">
+            <button type="button" class="btn btn-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+              </svg>
+            </button>
+          </div>
+          <!--FIN NIVELADOR-->
+
+          <!--BARRA LATERAL SECCIONES MARCAS-->
+            <app-lista-secciones-marcas [modoInterfaz]="modoInterfaz"
+          class=" d-flex flex-column flex-grow-1 height-0 overflow-y-auto rounded color-azul-2"></app-lista-secciones-marcas>
+          <!--FIN BARRA LATERAL SECCIONES MARCAS-->
+        </div>
+        
+      </div> 
+  
+  </div>
+  

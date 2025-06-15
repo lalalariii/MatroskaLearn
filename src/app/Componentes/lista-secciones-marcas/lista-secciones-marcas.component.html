@@ -1,0 +1,154 @@
+
+
+  <div class=" w-100"  *ngFor="let seccionAudio of secciones; index as i">
+
+    <div class="col item-lista p-3 borde-separador" 
+      [ngClass]="{'item-activo': seccionAudio.seleccionada == true}"
+      (click)="clickSeccion(seccionAudio)">
+
+      <div class="row flex-nowrap mx-0 mb-1">
+        <div class="col-auto ps-0 pe-2">
+          <div class="fw-bold texto-rojo">{{seccionAudio.separador.id}}</div>
+        </div>
+
+        <div class="col-auto  ps-0 pe-3">
+          <div class="ancho-25px rounded color-beis-1">
+            <div class="h-100 w-100 rounded border border-2 border-light" [ngStyle]="{'background-color': seccionAudio.region.color}">
+            </div>
+          </div>
+            
+        </div>
+
+        <div class="col px-0 fw-bold d-flex flex-grow-1 width-0">
+          <div class="col px-0 text-truncate fw-bold">
+            {{seccionAudio.titulo}}
+          </div>
+            
+        </div>
+      </div>
+
+      <div class="row flex-nowrap mx-0 align-items-center">
+        <div class="col-auto ps-0 pe-2 color-verde-1-letra">
+          {{ConversorTiempo.segundosATextoMinutos(seccionAudio.region.start)}} - {{ConversorTiempo.segundosATextoMinutos(seccionAudio.region.end)}}
+        </div>
+
+        <div class="col px-0">
+          <div class="row flex-nowrap mx-0 justify-content-end">
+            <div class="col-auto ps-0 pe-2 ocultar-en-vertical">
+              <button class="btn btn-sm letra-beis-1 " type="button" (click)="playRegionDesdeInicio(seccionAudio.region)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                  <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
+                </svg>
+              </button>
+            </div>
+
+            <div class="col-auto ps-0 pe-1 ocultar-en-vertical">
+              <button class="btn btn-sm letra-beis-1" type="button" (click)="setBucleSeccion(seccionAudio)"
+              [ngClass]="{'letra-beis-1': !seccionAudio.bucle, 'text-warning': seccionAudio.bucle}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-repeat-1" viewBox="0 0 16 16">
+                  <path d="M11 4v1.466a.25.25 0 0 0 .41.192l2.36-1.966a.25.25 0 0 0 0-.384l-2.36-1.966a.25.25 0 0 0-.41.192V3H5a5 5 0 0 0-4.48 7.223.5.5 0 0 0 .896-.446A4 4 0 0 1 5 4zm4.48 1.777a.5.5 0 0 0-.896.446A4 4 0 0 1 11 12H5.001v-1.466a.25.25 0 0 0-.41-.192l-2.36 1.966a.25.25 0 0 0 0 .384l2.36 1.966a.25.25 0 0 0 .41-.192V13h6a5 5 0 0 0 4.48-7.223Z"/>
+                  <path d="M9 5.5a.5.5 0 0 0-.854-.354l-1.75 1.75a.5.5 0 1 0 .708.708L8 6.707V10.5a.5.5 0 0 0 1 0z"/>
+                </svg>
+              </button>
+            </div>
+
+            <div class="col-auto ps-0 pe-2 ocultar-en-horizontal">
+              <button class="btn btn-sm letra-beis-1" type="button" (click)="clickItemSeccion(seccionAudio)" data-bs-dismiss="modal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
+                  <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5z"/>
+                  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0"/>
+                </svg>
+              </button>
+            </div>
+
+            <div class="col-auto px-0" *ngIf="!seccionAudio.mostrarDesplMarcas">
+              <button class="btn btn-sm texto-rojo" type="button" (click)="seccionAudio.mostrarDesplMarcas = true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                </svg>
+              </button>
+            </div>
+
+            <div class="col-auto px-0" *ngIf="seccionAudio.mostrarDesplMarcas">
+              <button class="btn btn-sm texto-rojo" type="button" (click)="seccionAudio.mostrarDesplMarcas = false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+                  <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--LISTA DE MARCAS DENTRO DE LA REGION-->
+    <div *ngIf="seccionAudio.mostrarDesplMarcas" class="borde-separador">
+      <div *ngFor="let marca of seccionAudio.marcas; index as j">
+
+       <div class="item-lista-marca py-2 ps-5 pe-2 borde-separador"
+        [ngClass]="{'item-activo': marca.seleccionada == true}"
+        (click)="clickMarca(marca)">
+
+        <div class="row mx-0 mb-1">
+          <div class="col-auto ps-0 pe-3">
+            <div class="fw-bold texto-rojo">{{marca.region.id}}.</div>
+          </div>
+
+  
+
+          <div class="col px-0 fw-bold d-flex flex-grow-1 width-0">
+            <div class="col px-0 text-truncate fw-bold">
+              {{marca.titulo}}
+            </div>
+              
+          </div>
+        </div>
+
+        <div class="row mx-0 align-items-center">
+          <div class="col-auto ps-0 pe-2 color-verde-1-letra">
+            {{ConversorTiempo.segundosATextoMinutos(marca.region.start)}} - {{ConversorTiempo.segundosATextoMinutos(marca.tiempo_fin)}}
+          </div>
+
+          <div class="col px-0">
+            <div class="row mx-0 justify-content-end">
+              <div class="col-auto ps-0 pe-2 ocultar-en-vertical">
+                <button class="btn btn-sm letra-beis-1 " type="button" (click)="playRegionDesdeInicio(marca.region)">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                    <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="col-auto px-0 ocultar-en-vertical">
+                <button class="btn btn-sm" type="button" (click)="setBucleMarca(marca)"
+                [ngClass]="{'letra-beis-1': !marca.bucle, 'text-warning': marca.bucle}"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-repeat-1" viewBox="0 0 16 16">
+                    <path d="M11 4v1.466a.25.25 0 0 0 .41.192l2.36-1.966a.25.25 0 0 0 0-.384l-2.36-1.966a.25.25 0 0 0-.41.192V3H5a5 5 0 0 0-4.48 7.223.5.5 0 0 0 .896-.446A4 4 0 0 1 5 4zm4.48 1.777a.5.5 0 0 0-.896.446A4 4 0 0 1 11 12H5.001v-1.466a.25.25 0 0 0-.41-.192l-2.36 1.966a.25.25 0 0 0 0 .384l2.36 1.966a.25.25 0 0 0 .41-.192V13h6a5 5 0 0 0 4.48-7.223Z"/>
+                    <path d="M9 5.5a.5.5 0 0 0-.854-.354l-1.75 1.75a.5.5 0 1 0 .708.708L8 6.707V10.5a.5.5 0 0 0 1 0z"/>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="col-auto px-0 ocultar-en-horizontal">
+                <button class="btn btn-sm letra-beis-1" type="button" (click)="seleccionarMarca(marca)" data-bs-dismiss="modal">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
+                    <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5z"/>
+                    <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0"/>
+                  </svg>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+       </div>
+        
+      </div>
+
+    </div>
+
+  </div>
+ 
+
+  

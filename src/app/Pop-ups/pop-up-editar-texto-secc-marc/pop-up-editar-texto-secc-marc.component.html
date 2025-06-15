@@ -1,0 +1,85 @@
+<!--POP - UP EDICION-->
+<div class="modal fade" #popUpEdicionTexto tabindex="-1" data-bs-backdrop="static" >
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content h-100">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold text-center w-100">Editar texto</h5>
+          <button type="button" class="btn btn-danger align-items-center" data-bs-dismiss="modal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid d-flex flex-column h-100 w-100">
+            <div class="row mx-0 mb-2 justify-content-center" *ngIf="seccion">
+              <div class="col-auto px-0">
+                <button class="btn btn-sm" (click)="isMarkdown = false" *ngIf="isMarkdown">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                  </svg>
+                  Markdown
+                </button>
+  
+                <button class="btn btn-sm" (click)="isMarkdown = true" *ngIf="!isMarkdown">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16">
+                    <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7 7 0 0 0 2.79-.588M5.21 3.088A7 7 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474z"/>
+                    <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12z"/>
+                  </svg>
+                  Markdown
+                </button>
+              </div>
+            </div>
+  
+            <div class="row mx-0 d-flex flex-grow-1 flex-column ocultar-en-vertical" *ngIf="isMarkdown">
+              <div class="col-6 px-0 h-100">
+                <textarea class="form-control h-100" [(ngModel)]="texto" placeholder="Texto...">
+                </textarea>
+              </div>
+  
+              <div class="col-6 ps-3 pe-0 h-100 d-flex flex-column">
+                <div class="d-flex flex-grow-1 height-0 overflow-auto">
+                  <markdown class="h-100" [data]="texto"></markdown>
+                </div>
+              </div>
+            </div>
+  
+            <div class="row mx-0 d-flex flex-grow-1 flex-column ocultar-en-horizontal" *ngIf="isMarkdown">
+              <div class="col-12 h-100">
+  
+                <div class="col-12 px-0 h-50 d-flex flex-column">
+                  <div class="d-flex flex-grow-1 height-0 overflow-auto">
+                    <markdown class="h-100" [data]="texto"></markdown>
+                  </div>
+                </div>
+  
+                <div class="col-12 h-50 px-0 pt-3">
+                  <textarea class="form-control h-100" [(ngModel)]="texto" placeholder="Texto...">
+                  </textarea>
+                </div>
+                
+              </div>
+              
+            </div>
+  
+  
+  
+            <div class="row mx-0 d-flex flex-grow-1 flex-column" *ngIf="!isMarkdown">
+              <div class="col-12 px-0 h-100">
+                <textarea class="form-control h-100" [(ngModel)]="texto" placeholder="Texto...">
+                </textarea>
+              </div>
+            </div>
+            
+            
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn color-amarillo-2 texto-azul-j fw-bold w-50" data-bs-dismiss="modal" (click)="guardarYSalir()">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--FIN POP UP DE EDICION-->

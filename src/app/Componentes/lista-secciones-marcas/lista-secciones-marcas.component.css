@@ -1,0 +1,37 @@
+/*Item lista de secciones y marcas*/
+
+.item-lista {
+    background-color: #1D3557; 
+    color: white;
+  }
+  
+  .item-lista-marca {
+    background-color: #24416B;
+    color: white;
+  }
+  
+  .item-lista.item-activo {
+    background-color: #2E548A; 
+    color: white; 
+    }
+    
+  .item-lista-marca.item-activo {
+  background-color: #2E548A; 
+  color: white; 
+  }
+
+  .min-width-fit-content{
+    min-width: fit-content;
+  }
+
+  .max-width-99{
+    max-width: 99%;
+  }
+
+  .h-fit-content{
+    height: fit-content;
+  }
+
+  .w-max-content{
+    width: max-content;
+  }

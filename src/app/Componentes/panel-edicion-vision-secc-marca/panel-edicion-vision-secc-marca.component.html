@@ -1,0 +1,946 @@
+<!--POP UPS-->
+<app-pop-up-editar-texto-secc-marc></app-pop-up-editar-texto-secc-marc>
+
+<!--POP UP PANTALLA COMPLETA-->
+<div class="modal fade" id="popupPantallaCompletaVideo" tabindex="-1">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+        <div class="container-fluid h-100 g-0" *ngIf="reproductorWsComponent">
+          <div class="col-12 h-100 d-flex flex-column color-azul-2 letra-beis-1" *ngIf="seccionSeleccionada">
+  
+            <!--BARRA HORIZONTAL-->
+            <div class="row mx-0 pb-3 ocultar-en-vertical">
+      
+              <div class="col-2 rounded p-2 color-azul-z">
+                <div class="row h-100 mx-0 align-items-center justify-content-center">
+                  <div class="col-auto ps-0 pe-3 texto-rojo fw-bold">
+                    Nº {{seccionSeleccionada.separador.id}}
+                  </div>
+      
+                  <div class="col-auto px-0">
+                    <div class="ancho-25px rounded color-beis-1">
+                      <div class="h-100 w-100 rounded border border-2 border-light" 
+                      [ngStyle]="{'background-color': seccionSeleccionada.region.color}">
+                      </div>
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+              </div>
+      
+              <div class="col px-2 pt-2">
+                <div class="row h-100 mx-0 justify-content-center align-items-center">
+                  <div class="col-auto px-0 fw-bold fs-5">
+                    {{seccionSeleccionada.titulo}}
+                  </div>
+                </div>
+              </div>
+      
+              <div class="col-auto rounded color-azul-z p-2">
+
+                
+                <div class="row mx-0 mt-auto align-items-center justify-content-center">
+
+                  <div class="col ps-0 pe-2">
+                    <input class="btn-check btn-light" type="checkbox" 
+                      id="checkVertical" (click)="cambiarOrientacion(OrientacionReproductor.VERTICAL)" [checked]="orientacion == OrientacionReproductor.VERTICAL">
+                    <label class="btn btn-sm color-beis-1 w-100" for="checkVertical">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-vr" viewBox="0 0 16 16">
+                        <path d="M3 12V4a1 1 0 0 1 1-1h2.5V2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5v-1H4a1 1 0 0 1-1-1m6.5 1v1H12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H9.5v1H12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1zM8 16a.5.5 0 0 1-.5-.5V.5a.5.5 0 0 1 1 0v15a.5.5 0 0 1-.5.5"/>
+                      </svg>
+                    </label>
+                  </div>
+
+                  <div class="col ps-0 pe-2">
+                    <input class="btn-check btn-light" type="checkbox" 
+                      id="checkHorizontal" (click)="cambiarOrientacion(OrientacionReproductor.HORIZONTAL)" [checked]="orientacion == OrientacionReproductor.HORIZONTAL">
+                    <label class="btn btn-sm color-beis-1 w-100" for="checkHorizontal">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-hr" viewBox="0 0 16 16">
+                        <path d="M12 3H4a1 1 0 0 0-1 1v2.5H2V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.5h-1V4a1 1 0 0 0-1-1M2 9.5h1V12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V9.5h1V12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm-1.5-2a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1z"/>
+                      </svg>
+                    </label>
+                  </div>
+
+                  <div class="col ps-0 pe-2">
+                    <input class="btn-check btn-light" type="checkbox" 
+                      id="checkImagen" (click)="cambiarModoVision(ModoVisionReproductor.IMAGEN)" [checked]="modoVision == ModoVisionReproductor.IMAGEN">
+                    <label class="btn btn-sm color-beis-1 w-100" for="checkImagen">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16">
+                        <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+                        <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z"/>
+                      </svg>
+                    </label>
+                  </div>
+
+                  <div class="col ps-0 pe-2">
+                    <input class="btn-check btn-light" type="checkbox" 
+                      id="checkTexto" (click)="cambiarModoVision(ModoVisionReproductor.TEXTO)" [checked]="modoVision == ModoVisionReproductor.TEXTO">
+                    <label class="btn btn-sm color-beis-1 w-100" for="checkTexto">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
+                        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+                        <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8m0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/>
+                      </svg>
+                    </label>
+                  </div>
+
+                  <div class="col px-0">
+                    <button class="btn btn-sm color-rojo-3 letra-beis-1 w-100" type="button" data-bs-dismiss="modal">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-fullscreen-exit" viewBox="0 0 16 16">
+                        <path d="M5.5 0a.5.5 0 0 1 .5.5v4A1.5 1.5 0 0 1 4.5 6h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5m5 0a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 10 4.5v-4a.5.5 0 0 1 .5-.5M0 10.5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 6 11.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5m10 1a1.5 1.5 0 0 1 1.5-1.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0z"/>
+                      </svg>
+                    </button>
+                  </div>
+    
+                </div>
+              </div>
+            </div>
+            <!--BARRA HORIZONTAL-->
+
+            <!--BARRA VERTICAL-->
+            <div class="row mx-0 p-2 color-azul-z ocultar-en-horizontal">
+      
+              <div class="col-auto ps-0 pe-3">
+                <div class="row h-100 mx-0 align-items-center justify-content-center">
+                  <div class="col-auto ps-0 pe-3 texto-rojo fw-bold">
+                    Nº {{seccionSeleccionada.separador.id}}
+                  </div>
+      
+                  <div class="col-auto px-0">
+                    <div class="ancho-25px rounded color-beis-1">
+                      <div class="h-100 w-100 rounded border border-2 border-light" 
+                      [ngStyle]="{'background-color': seccionSeleccionada.region.color}">
+                      </div>
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+              </div>
+      
+              <div class="col px-0">
+                <div class="row mx-0 mt-auto align-items-center justify-content-end">
+
+                  <div class="col ps-0 pe-2">
+                    <input class="btn-check btn-light" type="checkbox" 
+                      id="checkVertical" (click)="cambiarOrientacion(OrientacionReproductor.VERTICAL)" [checked]="orientacion == OrientacionReproductor.VERTICAL">
+                    <label class="btn btn-sm color-beis-1 w-100" for="checkVertical">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-vr" viewBox="0 0 16 16">
+                        <path d="M3 12V4a1 1 0 0 1 1-1h2.5V2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5v-1H4a1 1 0 0 1-1-1m6.5 1v1H12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H9.5v1H12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1zM8 16a.5.5 0 0 1-.5-.5V.5a.5.5 0 0 1 1 0v15a.5.5 0 0 1-.5.5"/>
+                      </svg>
+                    </label>
+                  </div>
+
+                  <div class="col ps-0 pe-2">
+                    <input class="btn-check btn-light" type="checkbox" 
+                      id="checkHorizontal" (click)="cambiarOrientacion(OrientacionReproductor.HORIZONTAL)" [checked]="orientacion == OrientacionReproductor.HORIZONTAL">
+                    <label class="btn btn-sm color-beis-1 w-100" for="checkHorizontal">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-hr" viewBox="0 0 16 16">
+                        <path d="M12 3H4a1 1 0 0 0-1 1v2.5H2V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.5h-1V4a1 1 0 0 0-1-1M2 9.5h1V12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V9.5h1V12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm-1.5-2a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1z"/>
+                      </svg>
+                    </label>
+                  </div>
+
+                  <div class="col ps-0 pe-2">
+                    <input class="btn-check btn-light" type="checkbox" 
+                      id="checkImagen" (click)="cambiarModoVision(ModoVisionReproductor.IMAGEN)" [checked]="modoVision == ModoVisionReproductor.IMAGEN">
+                    <label class="btn btn-sm color-beis-1 w-100" for="checkImagen">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16">
+                        <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+                        <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z"/>
+                      </svg>
+                    </label>
+                  </div>
+
+                  <div class="col ps-0 pe-2">
+                    <input class="btn-check btn-light" type="checkbox" 
+                      id="checkTexto" (click)="cambiarModoVision(ModoVisionReproductor.TEXTO)" [checked]="modoVision == ModoVisionReproductor.TEXTO">
+                    <label class="btn btn-sm color-beis-1 w-100" for="checkTexto">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
+                        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+                        <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8m0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/>
+                      </svg>
+                    </label>
+                  </div>
+
+                  <div class="col px-0">
+                    <button class="btn btn-sm color-rojo-3 letra-beis-1 w-100" type="button" data-bs-dismiss="modal">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-fullscreen-exit" viewBox="0 0 16 16">
+                        <path d="M5.5 0a.5.5 0 0 1 .5.5v4A1.5 1.5 0 0 1 4.5 6h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5m5 0a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 10 4.5v-4a.5.5 0 0 1 .5-.5M0 10.5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 6 11.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5m10 1a1.5 1.5 0 0 1 1.5-1.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0z"/>
+                      </svg>
+                    </button>
+                  </div>
+    
+                </div>
+              </div>
+            </div>
+
+            <div class="row mx-0 p-2 ocultar-en-horizontal">
+              <div class="col">
+                <div class="row h-100 mx-0 justify-content-center align-items-center">
+                  <div class="col-auto px-0 fw-bold fs-5">
+                    {{seccionSeleccionada.titulo}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--FIN BARRA VERTICAL-->
+      
+            <div class="col-12 px-3 pb-3 pt-0 flex-grow-1">
+                <!--ORIENTACION VERTICAL-->
+                <div class="row mx-0 h-100 w-100 rounded" *ngIf="orientacion != OrientacionReproductor.HORIZONTAL">
+                
+                  <!--TEXTO-->
+                  <div class="col h-100 min-height-200px flex-column d-flex px-0 color-azu overflow-hidden"
+                  [ngClass]="{ 'rounded-start': modoVision == ModoVisionReproductor.DIVIDIDO, 'rounded': modoVision == ModoVisionReproductor.TEXTO }"
+                  *ngIf="modoVision != ModoVisionReproductor.IMAGEN">
+                    <div class="row mx-0 p-3 flex-grow-1 height-0 overflow-auto justify-content-center letra-beis-1">
+                      <div class="col-12 px-0" *ngIf="!seccionSeleccionada.isTextoMarkdown">
+                        {{seccionSeleccionada.texto}} 
+                      </div>
+                      <markdown class="col-12 px-0" *ngIf="seccionSeleccionada.isTextoMarkdown" [data]="seccionSeleccionada.texto"></markdown>
+                    </div>
+  
+                    <div class="row altura-marca overflow-auto mx-0 align-items-end" *ngIf="marcaSeleccionada!= null">
+                      <div class="col-auto px-0 w-100 color-amarillo-1 borde-abajo-izq texto-azul-2">
+                        <div class="row mx-0 fw-bold">
+                          <div class="col-auto px-3 d-flex align-items-center borde-abajo-dere color-beis-1 texto-rojo">
+                            {{marcaSeleccionada.region.id}}
+                          </div>
+                          <div class="col width-0 text-truncate ps-3 pe-2 pt-2">
+                            {{marcaSeleccionada.titulo}}
+                          </div>
+                          <div class="col-auto pt-2 px-2">
+                            <button class="btn btn-sm texto-azul-2" (click)="marcaDesplegada = !marcaDesplegada">
+                              <svg *ngIf="!marcaDesplegada" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                              </svg>
+  
+                              <svg *ngIf="marcaDesplegada" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+                                <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="row mx-0 px-3 pt-1 pb-3 letraPeque" *ngIf="marcaDesplegada">
+                          {{marcaSeleccionada.texto}}
+                        </div>
+                        
+                      </div>
+                      
+                    </div>
+                  </div>
+  
+                  <!--BARRA SEPARACION-->
+                 <div class="col-auto px-0 barraSeparacion" *ngIf="modoVision == ModoVisionReproductor.DIVIDIDO">
+                 </div>
+        
+                 <!--IMAGEN-->
+                  <div class="col min-height-200px px-0 bg-light rounded-end overflow-hidden"
+                  [ngClass]="{ 'rounded-end': modoVision == ModoVisionReproductor.DIVIDIDO, 'rounded': modoVision == ModoVisionReproductor.IMAGEN }"
+                  *ngIf="modoVision != ModoVisionReproductor.TEXTO">
+                      
+                    <div class="img-adaptable" *ngIf="seccionSeleccionada.imagen.fichero != null"
+                    [ngStyle]="{'background-image': 'url(' + seccionSeleccionada.imagen.link + ')'}">
+                    </div>
+  
+                  </div>
+  
+                </div>
+                <!--FIN ORIENTACION VERTICAL-->
+  
+                <!--ORIENTACION HORIZONTAL-->
+                <div class="col-12 px-0 h-100 rounded overflow-hidden" *ngIf="orientacion == OrientacionReproductor.HORIZONTAL">
+                
+                  <!--IMAGEN-->
+                  <div class="row mx-0 min-height-98px alturaDivHorizontal bg-light rounded-top" *ngIf="modoVision != ModoVisionReproductor.TEXTO">
+                      
+                    <div class="img-adaptable" *ngIf="seccionSeleccionada.imagen.fichero != null"
+                    [ngStyle]="{'background-image': 'url(' + seccionSeleccionada.imagen.link + ')'}">
+                    </div>
+  
+                  </div>
+  
+                  <!--BARRA SEPARADORA-->
+                  <div class="row mx-0 barraSeparacionHorizontal"></div>
+  
+                  <!--TEXTO-->
+                  <div class="row mx-0 alturaDivHorizontal rounded-bottom">
+                    <div class="col-12 min-height-98px h-100 px-0 d-flex flex-column color-azu rounded-bottom">
+  
+                      <div class="row mx-0 p-3 flex-grow-1 height-0 overflow-auto justify-content-center letra-beis-1">
+                        <div class="col-12 px-0" *ngIf="!seccionSeleccionada.isTextoMarkdown">
+                          {{seccionSeleccionada.texto}} 
+                        </div>
+                        <markdown class="col-12 px-0" *ngIf="seccionSeleccionada.isTextoMarkdown" [data]="seccionSeleccionada.texto"></markdown>
+                        
+                      </div>
+    
+                      <div class="row altura-marca flex-grow-1 height-0 overflow-auto mx-0 align-items-end" *ngIf="marcaSeleccionada!= null">
+                        <div class="col-auto px-0 w-100 color-amarillo-1 borde-abajo-izq texto-azul-2">
+                          <div class="row mx-0 fw-bold">
+                            <div class="col-auto px-3 d-flex align-items-center borde-abajo-dere color-beis-1 texto-rojo">
+                              {{marcaSeleccionada.region.id}}
+                            </div>
+                            <div class="col width-0 text-truncate ps-3 pe-2 pt-2">
+                              {{marcaSeleccionada.titulo}}
+                            </div>
+                            <div class="col-auto pt-2 px-2">
+                              <button class="btn btn-sm" (click)="marcaDesplegada = !marcaDesplegada">
+                                <svg *ngIf="!marcaDesplegada" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                                </svg>
+  
+                                <svg *ngIf="marcaDesplegada" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+                                  <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+                                </svg>
+                              </button>
+                            </div>
+                          </div>
+                          <div class="row mx-0 px-3 pt-1 pb-3 letraPeque" *ngIf="marcaDesplegada">
+                            {{marcaSeleccionada.texto}}
+                          </div>
+                          
+                        </div>
+                        
+                      </div>
+    
+                    </div>
+                  </div>
+              
+                </div>
+                <!--FIN ORIENTACION HORIZONTAL-->
+              
+            </div>
+
+            <div class="row mx-0 color-beis-1 rounded mx-3 mt-0 mb-3 p-2 align-items-center">
+              <div class="col-auto ps-0 pe-1">
+                <button class="btn texto-azul-2" type="button" (click)="saltarAAnteriorSeccion()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-skip-backward-fill" viewBox="0 0 16 16">
+                    <path d="M.5 3.5A.5.5 0 0 0 0 4v8a.5.5 0 0 0 1 0V8.753l6.267 3.636c.54.313 1.233-.066 1.233-.697v-2.94l6.267 3.636c.54.314 1.233-.065 1.233-.696V4.308c0-.63-.693-1.01-1.233-.696L8.5 7.248v-2.94c0-.63-.692-1.01-1.233-.696L1 7.248V4a.5.5 0 0 0-.5-.5"/>
+                  </svg>
+                </button>
+              </div>
+        
+              <div class="col-auto ps-0 pe-1">
+                <button class="btn texto-azul-2" type="button" (click)="playAudioWs()">
+                  <svg *ngIf="!reproductorWsComponent.isPlayingWs" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                    <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
+                  </svg>
+      
+                  <svg *ngIf="reproductorWsComponent.isPlayingWs" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-play-fill letra-amarillo-1" viewBox="0 0 16 16">
+                    <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
+                  </svg>
+                </button>
+              </div>
+        
+              <div class="col-auto ps-0 pe-1">
+                <button class="btn texto-azul-2" type="button" (click)="pausarAudioWs()">
+                  <svg *ngIf="reproductorWsComponent.isPlayingWs" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16">
+                    <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5m5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5"/>
+                  </svg>
+      
+                  <svg *ngIf="!reproductorWsComponent.isPlayingWs" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pause-fill letra-amarillo-1" viewBox="0 0 16 16">
+                    <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5m5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5"/>
+                  </svg>
+                </button>
+              </div>
+        
+              <div class="col-auto ps-0 pe-2">
+                <button class="btn texto-azul-2" type="button" (click)="saltarASiguienteSeccion()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-skip-forward-fill" viewBox="0 0 16 16">
+                    <path d="M15.5 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V8.753l-6.267 3.636c-.54.313-1.233-.066-1.233-.697v-2.94l-6.267 3.636C.693 12.703 0 12.324 0 11.693V4.308c0-.63.693-1.01 1.233-.696L7.5 7.248v-2.94c0-.63.693-1.01 1.233-.696L15 7.248V4a.5.5 0 0 1 .5-.5"/>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="col ps-0 pe-2">
+                <div class="progress" (click)="seekTo($event)">
+                  <div class="progress-bar"
+                    [style.width]="(ctrlWsServ.getWaveSurfer().getCurrentTime() / ctrlWsServ.getWaveSurfer().getDuration()) * 100 + '%'">
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-auto px-0">
+                <label class="texto-azul-2 fw-bold">{{reproductorWsComponent.tiempoActualWs}} / {{reproductorWsComponent.tiempoTotalWs}}</label>
+              </div>
+            </div>
+            
+          </div>
+
+
+        </div>
+    </div>
+  </div>
+</div>
+<!--FIN POP UP PANTALLA COMPLETA-->
+
+<!--FIN POP UPS-->
+
+<!--PANEL VISION-EDICION-->
+          <div class="col-12 w-100 h-100 d-flex flex-column color-azul-2 letra-beis-1" *ngIf="seccionSeleccionada || marcaSeleccionada">
+    
+            <div class="row mx-0" [ngClass]="{'align-items-start': modoInterfaz === ModoVisionArchivo.ESCRITURA, 'pb-2': identDisServ.isPortrait(), 'pb-3': !identDisServ.isPortrait()}">
+      
+              <!--BOTONES LECTURA Y ESCRITURA VISTA VERTICAL-->
+              <div class="col-12 p-2 color-azul-z ocultar-en-horizontal">
+  
+                <div class="row h-100 mx-0 align-items-center">
+                  <div class="col-auto ps-3 pe-3 texto-rojo fw-bold">
+                    <div *ngIf="seccionSeleccionada">
+                      Nº {{seccionSeleccionada.separador.id}}
+                    </div>
+                    <div *ngIf="marcaSeleccionada && modoInterfaz === ModoVisionArchivo.ESCRITURA">
+                      {{marcaSeleccionada.region.id}}
+                    </div>
+                    
+                  </div>
+      
+                  <div class="col-auto px-0" *ngIf="seccionSeleccionada">
+                    <div class="ancho-25px rounded color-beis-1">
+                      <div class="h-100 w-100 rounded border border-2 border-light" 
+                      [ngStyle]="{'background-color': seccionSeleccionada.region.color}">
+                      </div>
+                    </div>
+                    
+                  </div>
+      
+                  <div class="col-auto px-0" *ngIf="seccionSeleccionada && modoInterfaz === ModoVisionArchivo.ESCRITURA">
+                    <button class="btn btn-sm letra-beis-1" type="button" (click)="colorPicker.click()">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                      </svg>
+                    </button>
+                    <input #colorPicker type="color" style="display: none;" (change)="cambiarColorSeccionEditar($event)">
+                  </div>
+                  
+  
+                  <div class="col ps-3 pe-0">
+  
+                    <div class="row mx-0 justify-content-end" *ngIf="modoInterfaz === ModoVisionArchivo.LECTURA">
+                      <div class="col ps-0 pe-2">
+                        <input class="btn-check btn-light" type="checkbox" 
+                          id="checkVertical" (click)="cambiarOrientacion(OrientacionReproductor.VERTICAL)" [checked]="orientacion == OrientacionReproductor.VERTICAL">
+                        <label class="btn btn-sm color-beis-1 w-100" for="checkVertical">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-vr" viewBox="0 0 16 16">
+                            <path d="M3 12V4a1 1 0 0 1 1-1h2.5V2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5v-1H4a1 1 0 0 1-1-1m6.5 1v1H12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H9.5v1H12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1zM8 16a.5.5 0 0 1-.5-.5V.5a.5.5 0 0 1 1 0v15a.5.5 0 0 1-.5.5"/>
+                          </svg>
+                        </label>
+                      </div>
+      
+                      <div class="col ps-0 pe-2">
+                        <input class="btn-check btn-light" type="checkbox" 
+                          id="checkHorizontal" (click)="cambiarOrientacion(OrientacionReproductor.HORIZONTAL)" [checked]="orientacion == OrientacionReproductor.HORIZONTAL">
+                        <label class="btn btn-sm color-beis-1 w-100" for="checkHorizontal">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-hr" viewBox="0 0 16 16">
+                            <path d="M12 3H4a1 1 0 0 0-1 1v2.5H2V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.5h-1V4a1 1 0 0 0-1-1M2 9.5h1V12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V9.5h1V12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm-1.5-2a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1z"/>
+                          </svg>
+                        </label>
+                      </div>
+      
+                      <div class="col ps-0 pe-2">
+                        <input class="btn-check btn-light" type="checkbox" 
+                          id="checkImagen" (click)="cambiarModoVision(ModoVisionReproductor.IMAGEN)" [checked]="modoVision == ModoVisionReproductor.IMAGEN">
+                        <label class="btn btn-sm color-beis-1 w-100" for="checkImagen">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16">
+                            <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+                            <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z"/>
+                          </svg>
+                        </label>
+                      </div>
+      
+                      <div class="col ps-0 pe-2">
+                        <input class="btn-check btn-light" type="checkbox" 
+                          id="checkTexto" (click)="cambiarModoVision(ModoVisionReproductor.TEXTO)" [checked]="modoVision == ModoVisionReproductor.TEXTO">
+                        <label class="btn btn-sm color-beis-1 w-100" for="checkTexto">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
+                            <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+                            <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8m0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/>
+                          </svg>
+                        </label>
+                      </div>
+      
+                      <div class="col px-0">
+                        <button class="btn btn-sm color-rojo-3 letra-beis-1 w-100" type="button" data-bs-toggle="modal" data-bs-target="#popupPantallaCompletaVideo">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707m0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707m-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707"/>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+  
+                    <div class="row mx-0 justify-content-end" *ngIf="modoInterfaz === ModoVisionArchivo.ESCRITURA">
+                      <div class="col-auto ps-0 pe-2">
+                        <button class="btn btn-sm color-beis-1 w-100 px-3" type="button" (click)="playSeleccionada()">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                            <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
+                          </svg>
+                        </button>
+                      </div>
+          
+                      <div class="col-auto ps-0 pe-2">
+                        <input *ngIf="seccionSeleccionada" class="btn-check" type="checkbox" 
+                          id="checkBucle" (click)="setBucleSeccion(seccionSeleccionada)" [checked]="seccionSeleccionada.bucle">
+                          <input *ngIf="marcaSeleccionada" class="btn-check" type="checkbox" 
+                          id="checkBucle" (click)="setBucleMarca(marcaSeleccionada)" [checked]="marcaSeleccionada.bucle">
+      
+                        <label class="btn btn-sm px-3 color-beis-1 w-100" for="checkBucle">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-repeat-1" viewBox="0 0 16 16">
+                            <path d="M11 4v1.466a.25.25 0 0 0 .41.192l2.36-1.966a.25.25 0 0 0 0-.384l-2.36-1.966a.25.25 0 0 0-.41.192V3H5a5 5 0 0 0-4.48 7.223.5.5 0 0 0 .896-.446A4 4 0 0 1 5 4zm4.48 1.777a.5.5 0 0 0-.896.446A4 4 0 0 1 11 12H5.001v-1.466a.25.25 0 0 0-.41-.192l-2.36 1.966a.25.25 0 0 0 0 .384l2.36 1.966a.25.25 0 0 0 .41-.192V13h6a5 5 0 0 0 4.48-7.223Z"/>
+                            <path d="M9 5.5a.5.5 0 0 0-.854-.354l-1.75 1.75a.5.5 0 1 0 .708.708L8 6.707V10.5a.5.5 0 0 0 1 0z"/>
+                          </svg>
+                        </label>
+                      </div>
+          
+                      <div class="col-auto px-0">
+                        <button class="btn btn-sm px-3 color-rojo-3 letra-beis-1 w-100" type="button" (click)="borrarSeleccionada()">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                            <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  
+  
+                </div>
+              </div>
+              <!--FIN BOTONES LECTURA Y ESCRITURA VISTA VERTICAL-->
+  
+              <!--BOTONES ESCRITURA VISTA HORIZONTAL-->
+              <div class="ocultar-en-vertical col-auto rounded p-2 color-azul-z">
+                <div class="row h-100 px-3 mx-0 align-items-center justify-content-center">
+  
+                  <div class="col-auto ps-0 pe-3 texto-rojo fw-bold heightBtnSm d-flex align-items-center" *ngIf="seccionSeleccionada">
+                      Nº {{seccionSeleccionada.separador.id}}
+                  </div>
+  
+                  <div class="col-auto px-0 texto-rojo fw-bold heightBtnSm d-flex align-items-center" *ngIf="marcaSeleccionada && modoInterfaz === ModoVisionArchivo.ESCRITURA">
+                      {{marcaSeleccionada.region.id}}
+                  </div>
+      
+                  <div class="col-auto px-0" *ngIf="seccionSeleccionada">
+                    <div class="ancho-25px rounded color-beis-1">
+                      <div class="h-100 w-100 rounded border border-2 border-light" 
+                      [ngStyle]="{'background-color': seccionSeleccionada.region.color}">
+                      </div>
+                    </div>
+                    
+                  </div>
+      
+                  <div class="col-auto px-0" *ngIf="seccionSeleccionada && modoInterfaz === ModoVisionArchivo.ESCRITURA">
+                    <button class="btn btn-sm letra-beis-1" type="button" (click)="colorPicker.click()">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                      </svg>
+                    </button>
+                    <input #colorPicker type="color" style="display: none;" (change)="cambiarColorSeccionEditar($event)">
+                  </div>
+                  
+                </div>
+              </div>
+              <!--FIN BOTONES ESCRITURA VISTA HORIZONTAL-->
+      
+              <div class="col px-2 pt-2">
+                <div class="row h-100 w-100 mx-0" *ngIf="!editarTituloSeccionMarca">
+                  <div class="col d-flex width-0 px-0 justify-content-center align-items-center">
+                    <div class="col-auto mw-80 px-0 fw-bold fs-5 text-center">
+                      <div class="col text-truncate" *ngIf="seccionSeleccionada">
+                        {{seccionSeleccionada.titulo}}
+                      </div>
+                      
+                      <div class="col text-truncate" *ngIf="marcaSeleccionada && modoInterfaz === ModoVisionArchivo.ESCRITURA">
+                        {{marcaSeleccionada.titulo}}
+                      </div>
+                      
+                    </div>
+                    <div class="col-auto px-0" *ngIf="modoInterfaz === ModoVisionArchivo.ESCRITURA">
+                      <button class="btn btn-sm letra-beis-1" type="button" (click)="editarTituloSeccionMarca = true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                          <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                          <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  
+                </div>
+    
+                <div class="row mx-0 justify-content-center align-items-center" *ngIf="editarTituloSeccionMarca">
+                  <div class="col px-0">
+                    <input *ngIf="seccionSeleccionada" class="form-control" type="text" [(ngModel)]="seccionSeleccionada.titulo">
+                    <input *ngIf="marcaSeleccionada" class="form-control" type="text" [(ngModel)]="marcaSeleccionada.titulo">
+                  </div>
+                
+                  <div class="col-auto px-0">
+                    <button type="button" class="btn color-salmon letra-beis-1" (click)="editarTituloSeccionMarca = false">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                        <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+    
+                <div class="row mx-0 justify-content-center align-items-center ocultar-en-vertical" *ngIf="modoInterfaz === ModoVisionArchivo.ESCRITURA">
+                  <div class="col-auto ps-0 pe-2  color-verde-1-letra">
+                    <div *ngIf="seccionSeleccionada">
+                      {{ConversorTiempo.segundosATextoMinutos(seccionSeleccionada.region.start)}}
+                    </div>
+                    <div *ngIf="marcaSeleccionada">
+                      {{ConversorTiempo.segundosATextoMinutos(marcaSeleccionada.region.start)}}
+                    </div>
+                  </div>
+        
+                  <div class="col-auto ps-0 pe-2 color-verde-1-letra">
+                    -
+                  </div>
+        
+                  <div class="col-auto px-0 color-verde-1-letra">
+                    <div *ngIf="seccionSeleccionada">
+                      {{ConversorTiempo.segundosATextoMinutos(seccionSeleccionada.region.end)}}
+                    </div>
+                    <div *ngIf="marcaSeleccionada">
+                      {{ConversorTiempo.segundosATextoMinutos(marcaSeleccionada.tiempo_fin)}}
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+      
+              <!--BOTONES LECTURA HORIZONTAL-->
+              <div *ngIf="modoInterfaz === ModoVisionArchivo.LECTURA" class="col-auto rounded color-azul-z p-2 ocultar-en-vertical">
+                <div class="row mx-0 mt-auto align-items-center justify-content-center">
+  
+                  <div class="col ps-0 pe-2">
+                    <input class="btn-check btn-light" type="checkbox" 
+                      id="checkVertical" (click)="cambiarOrientacion(OrientacionReproductor.VERTICAL)" [checked]="orientacion == OrientacionReproductor.VERTICAL">
+                    <label class="btn btn-sm color-beis-1 w-100" for="checkVertical">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-vr" viewBox="0 0 16 16">
+                        <path d="M3 12V4a1 1 0 0 1 1-1h2.5V2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5v-1H4a1 1 0 0 1-1-1m6.5 1v1H12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H9.5v1H12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1zM8 16a.5.5 0 0 1-.5-.5V.5a.5.5 0 0 1 1 0v15a.5.5 0 0 1-.5.5"/>
+                      </svg>
+                    </label>
+                  </div>
+  
+                  <div class="col ps-0 pe-2">
+                    <input class="btn-check btn-light" type="checkbox" 
+                      id="checkHorizontal" (click)="cambiarOrientacion(OrientacionReproductor.HORIZONTAL)" [checked]="orientacion == OrientacionReproductor.HORIZONTAL">
+                    <label class="btn btn-sm color-beis-1 w-100" for="checkHorizontal">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-hr" viewBox="0 0 16 16">
+                        <path d="M12 3H4a1 1 0 0 0-1 1v2.5H2V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.5h-1V4a1 1 0 0 0-1-1M2 9.5h1V12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V9.5h1V12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm-1.5-2a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1z"/>
+                      </svg>
+                    </label>
+                  </div>
+  
+                  <div class="col ps-0 pe-2">
+                    <input class="btn-check btn-light" type="checkbox" 
+                      id="checkImagen" (click)="cambiarModoVision(ModoVisionReproductor.IMAGEN)" [checked]="modoVision == ModoVisionReproductor.IMAGEN">
+                    <label class="btn btn-sm color-beis-1 w-100" for="checkImagen">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16">
+                        <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+                        <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z"/>
+                      </svg>
+                    </label>
+                  </div>
+  
+                  <div class="col ps-0 pe-2">
+                    <input class="btn-check btn-light" type="checkbox" 
+                      id="checkTexto" (click)="cambiarModoVision(ModoVisionReproductor.TEXTO)" [checked]="modoVision == ModoVisionReproductor.TEXTO">
+                    <label class="btn btn-sm color-beis-1 w-100" for="checkTexto">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
+                        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+                        <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8m0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/>
+                      </svg>
+                    </label>
+                  </div>
+  
+                  <div class="col px-0">
+                    <button class="btn btn-sm color-rojo-3 letra-beis-1 w-100" type="button" data-bs-toggle="modal" data-bs-target="#popupPantallaCompletaVideo">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707m0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707m-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707"/>
+                      </svg>
+                    </button>
+                  </div>
+    
+                </div>
+              </div>
+              <!--FIN BOTONES LECTURA HORIZONTAL-->
+  
+              <!--BOTONES ESCRITURA VISTA HORIZONTAL-->
+              <div *ngIf="modoInterfaz === ModoVisionArchivo.ESCRITURA" class="ocultar-en-vertical col-auto rounded color-azul-z p-2">
+                <div class="row mx-0 mt-auto align-items-center justify-content-center">
+                  <div class="col ps-0 pe-2">
+                    <button class="btn btn-sm color-beis-1 w-100 px-3" type="button" (click)="playSeleccionada()">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                        <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
+                      </svg>
+                    </button>
+                  </div>
+      
+                  <div class="col ps-0 pe-2">
+                    <input *ngIf="seccionSeleccionada" class="btn-check" type="checkbox" 
+                      id="checkBucle" (click)="setBucleSeccion(seccionSeleccionada)" [checked]="seccionSeleccionada.bucle">
+                      <input *ngIf="marcaSeleccionada" class="btn-check" type="checkbox" 
+                      id="checkBucle" (click)="setBucleMarca(marcaSeleccionada)" [checked]="marcaSeleccionada.bucle">
+  
+                    <label class="btn btn-sm px-3 color-beis-1 w-100" for="checkBucle">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-repeat-1" viewBox="0 0 16 16">
+                        <path d="M11 4v1.466a.25.25 0 0 0 .41.192l2.36-1.966a.25.25 0 0 0 0-.384l-2.36-1.966a.25.25 0 0 0-.41.192V3H5a5 5 0 0 0-4.48 7.223.5.5 0 0 0 .896-.446A4 4 0 0 1 5 4zm4.48 1.777a.5.5 0 0 0-.896.446A4 4 0 0 1 11 12H5.001v-1.466a.25.25 0 0 0-.41-.192l-2.36 1.966a.25.25 0 0 0 0 .384l2.36 1.966a.25.25 0 0 0 .41-.192V13h6a5 5 0 0 0 4.48-7.223Z"/>
+                        <path d="M9 5.5a.5.5 0 0 0-.854-.354l-1.75 1.75a.5.5 0 1 0 .708.708L8 6.707V10.5a.5.5 0 0 0 1 0z"/>
+                      </svg>
+                    </label>
+                  </div>
+      
+                  <div class="col px-0">
+                    <button class="btn btn-sm px-3 color-rojo-3 letra-beis-1 w-100" type="button" (click)="borrarSeleccionada()">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+                      </svg>
+                    </button>
+                  </div>
+                  
+                </div>
+                <!--FIN BOTONES ESCRITURA VISTA HORIZONTAL-->
+              </div>
+            </div>
+      
+            <div class="col-12 px-3 pb-3 pt-0 flex-grow-1 d-flex flex-column">
+              <!--PANEL MODO LECTURA-->
+              <div class="col-12 h-100 mx-0" *ngIf="modoInterfaz === ModoVisionArchivo.LECTURA">
+                <!--ORIENTACION VERTICAL-->
+                <div class="row mx-0 h-100 w-100 rounded" *ngIf="orientacion != OrientacionReproductor.HORIZONTAL">
+                
+                  <!--TEXTO-->
+                  <div class="col min-height-200px h-100 flex-column d-flex px-0 color-azu overflow-hidden"
+                  [ngClass]="{ 'rounded-start': modoVision == ModoVisionReproductor.DIVIDIDO, 'rounded': modoVision == ModoVisionReproductor.TEXTO }"
+                  *ngIf="modoVision != ModoVisionReproductor.IMAGEN">
+                    <div class="row mx-0 p-3 flex-grow-1 height-0 overflow-auto justify-content-center letra-beis-1">
+                      <div class="col-12 px-0" *ngIf="!seccionSeleccionada?.isTextoMarkdown">
+                        {{seccionSeleccionada?.texto}} 
+                      </div>
+                      <markdown class="col-12 px-0" *ngIf="seccionSeleccionada?.isTextoMarkdown" [data]="seccionSeleccionada?.texto"></markdown>
+                    </div>
+  
+                    <div class="row altura-marca overflow-auto mx-0 align-items-end" *ngIf="marcaSeleccionada!= null">
+                      <div class="col-auto px-0 w-100 color-amarillo-1 borde-abajo-izq texto-azul-2">
+                        <div class="row mx-0 fw-bold">
+                          <div class="col-auto px-3 d-flex align-items-center borde-abajo-dere color-beis-1 texto-rojo">
+                            {{marcaSeleccionada.region.id}}
+                          </div>
+                          <div class="col width-0 text-truncate ps-3 pe-2 pt-2">
+                            {{marcaSeleccionada.titulo}}
+                          </div>
+                          <div class="col-auto pt-2 px-2">
+                            <button class="btn btn-sm texto-azul-2" (click)="marcaDesplegada = !marcaDesplegada">
+                              <svg *ngIf="!marcaDesplegada" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                              </svg>
+  
+                              <svg *ngIf="marcaDesplegada" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+                                <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="row mx-0 px-3 pt-1 pb-3 letraPeque" *ngIf="marcaDesplegada">
+                          {{marcaSeleccionada.texto}}
+                        </div>
+                        
+                      </div>
+                      
+                    </div>
+                  </div>
+  
+                  <!--BARRA SEPARACION-->
+                 <div class="col-auto px-0 barraSeparacion" *ngIf="modoVision == ModoVisionReproductor.DIVIDIDO">
+                 </div>
+        
+                 <!--IMAGEN-->
+                  <div class="col min-height-200px px-0 bg-light rounded-end overflow-hidden"
+                  [ngClass]="{ 'rounded-end': modoVision == ModoVisionReproductor.DIVIDIDO, 'rounded': modoVision == ModoVisionReproductor.IMAGEN }"
+                  *ngIf="modoVision != ModoVisionReproductor.TEXTO">
+                      
+                    <div class="img-adaptable" *ngIf="seccionSeleccionada?.imagen?.fichero != null"
+                    [ngStyle]="{'background-image': 'url(' + seccionSeleccionada?.imagen?.link + ')'}">
+                    </div>
+  
+                  </div>
+  
+                </div>
+                <!--FIN ORIENTACION VERTICAL-->
+  
+                <!--ORIENTACION HORIZONTAL-->
+                <div class="col-12 px-0 h-100 rounded overflow-hidden" *ngIf="orientacion == OrientacionReproductor.HORIZONTAL">
+                
+                  <!--IMAGEN-->
+                  <div class="row mx-0 min-height-98px alturaDivHorizontal bg-light rounded-top" *ngIf="modoVision != ModoVisionReproductor.TEXTO">
+                      
+                    <div class="img-adaptable" *ngIf="seccionSeleccionada?.imagen?.fichero != null"
+                    [ngStyle]="{'background-image': 'url(' + seccionSeleccionada?.imagen?.link + ')'}">
+                    </div>
+  
+                  </div>
+  
+                  <!--BARRA SEPARADORA-->
+                  <div class="row mx-0 barraSeparacionHorizontal"></div>
+  
+                  <!--TEXTO-->
+                  <div class="row mx-0 alturaDivHorizontal rounded-bottom">
+                    <div class="col-12 min-height-98px h-100 px-0 d-flex flex-column color-azu rounded-bottom">
+  
+                      <div class="row mx-0 p-3 flex-grow-1 height-0 overflow-auto justify-content-center letra-beis-1">
+                        <div class="col-12 px-0" *ngIf="!seccionSeleccionada?.isTextoMarkdown">
+                          {{seccionSeleccionada?.texto}} 
+                        </div>
+                        <markdown class="col-12 px-0" *ngIf="seccionSeleccionada?.isTextoMarkdown" [data]="seccionSeleccionada?.texto"></markdown>
+                        
+                      </div>
+    
+                      <div class="row altura-marca flex-grow-1 height-0 overflow-auto mx-0 align-items-end" *ngIf="marcaSeleccionada!= null">
+                        <div class="col-auto px-0 w-100 color-amarillo-1 borde-abajo-izq texto-azul-2">
+                          <div class="row mx-0 fw-bold">
+                            <div class="col-auto px-3 d-flex align-items-center borde-abajo-dere color-beis-1 texto-rojo">
+                              {{marcaSeleccionada.region.id}}
+                            </div>
+                            <div class="col width-0 text-truncate ps-3 pe-2 pt-2">
+                              {{marcaSeleccionada.titulo}}
+                            </div>
+                            <div class="col-auto pt-2 px-2">
+                              <button class="btn btn-sm" (click)="marcaDesplegada = !marcaDesplegada">
+                                <svg *ngIf="!marcaDesplegada" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                                </svg>
+  
+                                <svg *ngIf="marcaDesplegada" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+                                  <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+                                </svg>
+                              </button>
+                            </div>
+                          </div>
+                          <div class="row mx-0 px-3 pt-1 pb-3 letraPeque" *ngIf="marcaDesplegada">
+                            {{marcaSeleccionada.texto}}
+                          </div>
+                          
+                        </div>
+                        
+                      </div>
+    
+                    </div>
+                  </div>
+              
+                </div>
+                <!--FIN ORIENTACION HORIZONTAL-->
+  
+              </div>
+              <!--FIN PANEL MODO LECTURA-->
+  
+              <!--PANEL MODO ESCRITURA-->
+              <div *ngIf="modoInterfaz === ModoVisionArchivo.ESCRITURA" class="row mx-0 color-azul-z rounded-top ocultar-en-horizontal overflow-hidden">
+                <div class="col p-2 text-center" *ngIf="seccionSeleccionada" [ngClass]="{'color-azul-jaja': !isVisionTexto}" (click)="isVisionTexto = false">
+                  Imagen
+                </div>
+                <div class="col p-2 text-center" [ngClass]="{'color-azul-jaja': isVisionTexto}" (click)="isVisionTexto = true">
+                  Texto
+                </div>
+              </div>
+  
+              <div *ngIf="modoInterfaz === ModoVisionArchivo.ESCRITURA" class="row mx-0 w-100 flex-grow-1">
+    
+                <!--TEXTO-->
+                <div class="col px-0 h-100" *ngIf="!identDisServ.isPortrait() || (isVisionTexto && identDisServ.isPortrait()) || (marcaSeleccionada)">
+                  <div class="col-12 min-height-200px w-100 h-100 d-flex flex-column rounded-bottom color-azu px-3 pb-3 pt-1" [ngClass]="{'rounded-top': !identDisServ.isPortrait()}">
+    
+                    <div class="row mx-0 pb-1 justify-content-start">
+                      <div class="col-auto px-0">
+                        <button class="btn btn-sm letra-beis-1" type="button" (click)="editarTexto()">
+                         
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+      
+                    <div class="row mx-0 height-0 flex-grow-1 overflow-auto">
+                      <div *ngIf="seccionSeleccionada">
+                        <div class="col h-100 px-0" *ngIf="seccionSeleccionada.texto != null && seccionSeleccionada.texto != ''">
+                          <markdown *ngIf="seccionSeleccionada.isTextoMarkdown" class="h-100" [data]="seccionSeleccionada.texto"></markdown>
+                          <div *ngIf="!seccionSeleccionada.isTextoMarkdown">
+                            {{seccionSeleccionada.texto}}
+                          </div>
+                        </div>
+      
+                        <div class="col h-100 px-0 d-flex align-items-center justify-content-center" *ngIf="seccionSeleccionada.texto == null || seccionSeleccionada.texto == ''">
+                          Añade un texto a la sección...
+                        </div>
+                      </div>
+  
+                     <div *ngIf="marcaSeleccionada">
+                      <div class="col h-100 px-0" *ngIf="marcaSeleccionada.texto != null && marcaSeleccionada.texto != ''">
+                        {{marcaSeleccionada.texto}}
+                      </div>
+        
+                      <div class="col h-100 px-0 d-flex align-items-center justify-content-center" *ngIf="marcaSeleccionada.texto == null || marcaSeleccionada.texto == ''">
+                        Añade un texto a la marca...
+                      </div>
+                     </div>
+  
+                    </div>
+                  </div>
+                  
+    
+                </div>
+      
+                <!--IMAGEN-->
+                <div *ngIf="seccionSeleccionada && (!identDisServ.isPortrait() || (!isVisionTexto && identDisServ.isPortrait()))" class="col px-0 h-100" [ngClass]="{'ps-3': !identDisServ.isPortrait()}">
+                  <div class="col-12 min-height-200px px-0 bg-light d-flex flex-column h-100 align-items-center justify-content-center rounded-bottom" [ngClass]="{'rounded-top': !identDisServ.isPortrait()}">
+    
+                      <button class="btn color-azul-j text-white" *ngIf="seccionSeleccionada.imagen.fichero == null" 
+                      (click)="inputImagenSeccionEdicion.click()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+                        </svg>
+                      </button>
+                    
+    
+                    <input 
+                      type="file" 
+                      #inputImagenSeccionEdicion 
+                      accept="image/*" 
+                      (change)="imagenSeccionEditarSeleccionada($event)" 
+                      style="display: none;" 
+                    />
+    
+                    <div class="img-adaptable h-100" *ngIf="seccionSeleccionada.imagen.fichero != null"
+                    [ngStyle]="{'background-image': 'url(' + seccionSeleccionada.imagen.link + ')'}">
+                      <div class="row h-100 mx-0 align-items-end justify-content-end">
+                        <div class="col-2 p-2">
+                          <button class="btn btn-light w-100 border borde-color-azul-10" (click)="inputImagenSeccionEdicion.click()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                            </svg>
+                          </button>
+                        </div>
+    
+                        <div class="col-2 ps-0 pe-2 py-2">
+                          <button class="btn color-rojo-3 letra-beis-1 w-100 border borde-color-azul-10" (click)="borrarImagenSeccionEditar()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                              <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+                            </svg>
+                          </button>
+                        </div>
+                        
+                      </div>
+                  
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--FIN PANEL MODO ESCRITURA-->
+            </div>
+          </div>
+          <!-- FIN PANEL VISION-EDICION-->

@@ -1,0 +1,77 @@
+  <!--POP UP LISTA DE SECCIONES Y MARCAS-->
+  <div class="modal fade" #popupListaSeccMarc tabindex="-1">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content">
+        <div class="container-fluid h-100 g-0">
+            <app-lista-secciones-marcas
+            class="col-12 h-100 mh-100 d-flex flex-column color-azul-2 overflow-auto"
+             [modoInterfaz]="modoInterfaz"></app-lista-secciones-marcas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--FIN POP UP LISTA DE SECCIONES Y MARCAS-->
+
+
+<!--LISTA SECCIONES ABREVIADA VERTICAL-->
+<div class="col-12 " *ngIf="seccionSeleccionada || marcaSeleccionada">
+<div class="row mx-0 letra-beis-1 color-azul-2 rounded p-3 borde-separador">
+    
+    <div class="col px-0">
+
+        <div class="row mx-0 mb-1">
+        <div class="col-auto ps-0 pe-2">
+            <div class="fw-bold texto-rojo">
+            <div *ngIf="seccionSeleccionada">
+                {{seccionSeleccionada.separador.id}}
+            </div>
+            <div *ngIf="marcaSeleccionada && modoInterfaz === ModoVisionArchivo.ESCRITURA">
+                {{marcaSeleccionada.region.id}}
+            </div>
+            
+            </div>
+        </div>
+
+        <div class="col-auto  ps-0 pe-3" *ngIf="seccionSeleccionada">
+            <div class="ancho-25px rounded color-beis-1">
+            <div class="h-100 w-100 rounded border border-2 border-light" [ngStyle]="{'background-color': seccionSeleccionada.region.color}">
+            </div>
+            </div>
+            
+        </div>
+
+        <div class="col width-0 ps-0 pe-3 fw-bold text-truncate" *ngIf="seccionSeleccionada">
+            {{seccionSeleccionada.titulo}}    
+        </div>
+
+        <div class="col width-0 text-truncate ps-0 pe-3 fw-bold" *ngIf="marcaSeleccionada && modoInterfaz === ModoVisionArchivo.ESCRITURA">
+            {{marcaSeleccionada.titulo}}
+        </div>
+
+
+        </div>
+
+        <div class="row mx-0 align-items-center">
+        <div class="col-auto ps-0 pe-2 color-verde-1-letra">
+            <div *ngIf="seccionSeleccionada">
+            {{ConversorTiempo.segundosATextoMinutos(seccionSeleccionada.region.start)}} - {{ConversorTiempo.segundosATextoMinutos(seccionSeleccionada.region.end)}}
+            </div>
+
+            <div *ngIf="marcaSeleccionada && modoInterfaz === ModoVisionArchivo.ESCRITURA">
+            {{ConversorTiempo.segundosATextoMinutos(marcaSeleccionada.region.start)}} - {{ConversorTiempo.segundosATextoMinutos(marcaSeleccionada.tiempo_fin)}}
+            </div>
+        </div>
+
+        </div>
+    </div>
+
+    <div class="col-auto d-flex align-items-center px-0">
+        <button class="btn color-beis-1" (click)="abrirListaCompleta()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+        </svg>
+        </button>
+    </div>
+</div>
+</div>
+<!--FIN LISTA SECCIONES ABREVIADA VERTICAL-->

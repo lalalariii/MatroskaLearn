@@ -1,0 +1,34 @@
+  <!--POP-UP CREAR MARCA-->
+  <div class="modal modal-lg fade" #popupCrearMarc tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header container-fluid">
+          <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Añade una nueva marca</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid g-0">
+  
+            <div class="row mx-0">
+              <div class="col-12 px-0 pb-3">
+                <input [(ngModel)]="tituloMarcaNueva" class="form-control" type="text" placeholder="Título de la marca...">
+              </div>
+            </div>
+            <div class="row mx-0">
+              <div class="col-12 px-0 pb-3">
+                <textarea [(ngModel)]="textoMarcaNueva" class="form-control h-100" rows="10" placeholder="Texto de la marca..."></textarea>
+              </div>
+            </div>
+            <div class="row mx-0">
+              <div class="col px-0">
+                <button data-bs-dismiss="modal" class="btn color-amarillo-2 texto-azul-j fw-bold botonEdicion w-100" type="button" (click)="crearMarcaLectura()">
+                  Crear
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--FIN POP-UP CREAR MARCA-->
