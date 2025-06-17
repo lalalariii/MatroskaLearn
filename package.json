@@ -22,6 +22,7 @@
     "@ffmpeg/ffmpeg": "^0.12.10",
     "@ffmpeg/util": "^0.12.1",
     "@popperjs/core": "^2.11.8",
+    "angular-cli-ghpages": "^2.0.3",
     "bootstrap": "^5.3.3",
     "idb": "^8.0.2",
     "ngx-device-detector": "^8.0.0",
